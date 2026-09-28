@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CleanCar - Professional Auto Detailing</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>CleanCar - Service Checklist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,505 +13,512 @@
         }
 
         :root {
-            --primary: #1e3a8a;
-            --primary-light: #3b82f6;
-            --accent: #f59e0b;
-            --dark: #0f172a;
+            --primary: #1e293b;
             --light: #f8fafc;
-            --text-muted: #64748b;
             --border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --success: #10b981;
+            --accent: #3b82f6;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            background: #ffffff;
-        }
-
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            background: var(--primary);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            z-index: 100;
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-        }
-
-        nav .logo span {
-            color: var(--accent);
-        }
-
-        nav .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        nav .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav .nav-links a:hover {
-            color: var(--accent);
+            background: var(--light);
+            color: var(--text-main);
+            padding: 2rem 1rem;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 0 2rem;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
-            color: white;
-            padding: 6rem 2rem;
+        header {
             text-align: center;
+            margin-bottom: 2rem;
         }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+        h1 {
+            font-size: 2rem;
             font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .hero .subtitle {
-            font-size: 1.25rem;
-            color: #dbeafe;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .hero .cta-button {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--primary);
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-
-        .hero .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 4rem 2rem;
-            background: var(--light);
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            border-top: 4px solid var(--primary);
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-            border-top-color: var(--accent);
-        }
-
-        .service-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: var(--primary);
+            letter-spacing: -0.5px;
         }
 
-        .service-card p {
+        .subtitle {
+            font-size: 0.9rem;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* Why Choose Us */
-        .why-us {
-            padding: 4rem 2rem;
+        /* Cards */
+        .card {
             background: white;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .feature-item {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .feature-item .checkmark {
-            font-size: 1.8rem;
-            color: var(--accent);
-            flex-shrink: 0;
-        }
-
-        .feature-item h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .feature-item p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Booking Section */
-        .booking {
-            padding: 3rem 2rem;
-            background: var(--light);
-            border-radius: 12px;
-            margin: 3rem 0;
-        }
-
-        .booking h2 {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: var(--primary);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            border-radius: 10px;
+            padding: 1.5rem;
             margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         }
 
+        .card-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Form Fields */
         .form-group {
             display: flex;
             flex-direction: column;
+            margin-bottom: 1rem;
         }
 
-        .form-group label {
-            font-size: 0.85rem;
+        label {
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: var(--text-muted);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
-        .form-group input,
-        .form-group select {
-            padding: 0.75rem;
+        input[type="text"],
+        input[type="date"],
+        select {
+            padding: 0.7rem;
             border: 1px solid var(--border);
             border-radius: 6px;
             font-size: 0.95rem;
             font-family: 'Inter', sans-serif;
-            transition: border-color 0.3s;
+            transition: all 0.2s;
         }
 
-        .form-group input:focus,
-        .form-group select:focus {
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        select:focus {
             outline: none;
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
         }
 
-        .submit-btn {
-            grid-column: 1 / -1;
-            background: var(--primary);
-            color: white;
-            padding: 1rem;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
+        /* Checklist Section */
+        .checklist-section {
+            margin-top: 1.5rem;
+        }
+
+        .checklist-title {
             font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .checklist-item {
+            display: grid;
+            grid-template-columns: 60px 1fr 150px 130px;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.75rem;
+            margin-bottom: 0.75rem;
+            background: var(--light);
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:hover {
+            background: #f1f5f9;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 28px;
+            height: 28px;
             cursor: pointer;
-            transition: all 0.3s;
+            accent-color: var(--success);
         }
 
-        .submit-btn:hover {
-            background: #1e3a8a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary);
-            color: white;
-            padding: 2rem;
-            text-align: center;
+        .task-name {
+            font-weight: 500;
+            color: var(--text-main);
             font-size: 0.95rem;
         }
 
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
+        .employee-field,
+        .time-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .employee-field label,
+        .time-field label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 600;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        .employee-field input,
+        .time-field input {
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        /* Action Buttons */
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        button {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0f172a;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-download {
+            grid-column: 1 / -1;
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-download:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 600px) {
+            .checklist-item {
+                grid-template-columns: 50px 1fr;
+                gap: 0.75rem;
             }
 
-            nav .nav-links {
-                display: none;
+            .employee-field,
+            .time-field {
+                grid-column: 1 / -1;
+                order: 10;
             }
 
-            .section-title {
-                font-size: 1.8rem;
+            .checklist-title {
+                font-size: 0.95rem;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                font-size: 0.85rem;
+                padding: 0.65rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">Clean<span>Car</span></div>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why-us">Why Us</a></li>
-                <li><a href="#booking">Book Now</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="container">
+        <header>
+            <h1>CleanCar</h1>
+            <p class="subtitle">Service Completion Checklist</p>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Professional Auto Detailing Excellence</h1>
-            <p class="subtitle">Transform your vehicle with our premium detailing services</p>
-            <button class="cta-button">Book Your Service</button>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <p class="section-subtitle">Comprehensive detailing solutions for every vehicle</p>
+        <div class="card">
+            <div class="card-title">Vehicle Information</div>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="icon">🧼</div>
-                    <h3>Exterior Wash</h3>
-                    <p>Professional hand wash with premium soaps and protective coatings to keep your paint pristine.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="icon">✨</div>
-                    <h3>Paint Protection</h3>
-                    <p>Clay bar treatment, wax, and ceramic coating to protect your vehicle's exterior from elements.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="icon">🛢️</div>
-                    <h3>Engine Detailing</h3>
-                    <p>Deep cleaning of engine bay with safe, eco-friendly products for optimal performance.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="icon">🪑</div>
-                    <h3>Interior Cleaning</h3>
-                    <p>Vacuum, steam cleaning, and conditioning of seats, carpets, and trim for a fresh interior.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="icon">🛞</div>
-                    <h3>Wheel & Tire Care</h3>
-                    <p>Professional cleaning and protection of wheels and tires to enhance curb appeal.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="icon">🚗</div>
-                    <h3>Full Detail Package</h3>
-                    <p>Complete interior and exterior detailing service for ultimate vehicle transformation.</p>
-                </div>
+            <div class="form-group">
+                <label>Vehicle Make</label>
+                <input type="text" id="vehicleMake" placeholder="e.g., Toyota">
+            </div>
+
+            <div class="form-group">
+                <label>Vehicle Model</label>
+                <input type="text" id="vehicleModel" placeholder="e.g., Camry">
+            </div>
+
+            <div class="form-group">
+                <label>Service Date</label>
+                <input type="date" id="serviceDate">
+            </div>
+
+            <div class="form-group">
+                <label>Approved By</label>
+                <input type="text" id="approvedBy" placeholder="Manager name">
             </div>
         </div>
-    </section>
 
-    <!-- Why Choose Us -->
-    <section class="why-us" id="why-us">
-        <div class="container">
-            <h2 class="section-title">Why Choose CleanCar?</h2>
-            
-            <div class="features">
-                <div class="feature-item">
-                    <div class="checkmark">✓</div>
-                    <div>
-                        <h4>Expert Technicians</h4>
-                        <p>Certified professionals with 10+ years of experience in luxury auto detailing.</p>
+        <div class="card">
+            <div class="checklist-section">
+                <div class="checklist-title">Exterior Checklist</div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="ext1" data-task="Wash & Rinse">
+                    <div class="task-name">Wash & Rinse</div>
+                    <div class="employee-field">
+                        <label>Employee</label>
+                        <input type="text" class="employee" placeholder="Name">
+                    </div>
+                    <div class="time-field">
+                        <label>Time</label>
+                        <input type="time" class="time">
                     </div>
                 </div>
-                
-                <div class="feature-item">
-                    <div class="checkmark">✓</div>
-                    <div>
-                        <h4>Premium Products</h4>
-                        <p>We use only the finest, eco-friendly detailing products for superior results.</p>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="ext2" data-task="Clay Bar Treatment">
+                    <div class="task-name">Clay Bar Treatment</div>
+                    <div class="employee-field">
+                        <label>Employee</label>
+                        <input type="text" class="employee" placeholder="Name">
+                    </div>
+                    <div class="time-field">
+                        <label>Time</label>
+                        <input type="time" class="time">
                     </div>
                 </div>
-                
-                <div class="feature-item">
-                    <div class="checkmark">✓</div>
-                    <div>
-                        <h4>Guaranteed Quality</h4>
-                        <p>100% satisfaction guarantee or your money back. We stand behind our work.</p>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="ext3" data-task="Wax & Polish">
+                    <div class="task-name">Wax & Polish</div>
+                    <div class="employee-field">
+                        <label>Employee</label>
+                        <input type="text" class="employee" placeholder="Name">
+                    </div>
+                    <div class="time-field">
+                        <label>Time</label>
+                        <input type="time" class="time">
                     </div>
                 </div>
-                
-                <div class="feature-item">
-                    <div class="checkmark">✓</div>
-                    <div>
-                        <h4>Flexible Scheduling</h4>
-                        <p>Mobile service available. We come to you at your convenience.</p>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="ext4" data-task="Tire Cleaning">
+                    <div class="task-name">Tire Cleaning</div>
+                    <div class="employee-field">
+                        <label>Employee</label>
+                        <input type="text" class="employee" placeholder="Name">
                     </div>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="checkmark">✓</div>
-                    <div>
-                        <h4>Competitive Pricing</h4>
-                        <p>Premium service without premium prices. Free estimates available.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="checkmark">✓</div>
-                    <div>
-                        <h4>Fast Turnaround</h4>
-                        <p>Most services completed within 2-4 hours. Same-day availability.</p>
+                    <div class="time-field">
+                        <label>Time</label>
+                        <input type="time" class="time">
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Booking Section -->
-    <section id="booking">
-        <div class="container">
-            <div class="booking">
-                <h2>Schedule Your Appointment</h2>
-                <form>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Full Name *</label>
-                            <input type="text" placeholder="John Doe" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Email Address *</label>
-                            <input type="email" placeholder="john@example.com" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Phone Number *</label>
-                            <input type="tel" placeholder="(555) 000-0000" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Service Type *</label>
-                            <select required>
-                                <option value="">Select a service...</option>
-                                <option value="exterior">Exterior Wash</option>
-                                <option value="interior">Interior Cleaning</option>
-                                <option value="full">Full Detail Package</option>
-                                <option value="paint">Paint Protection</option>
-                                <option value="engine">Engine Detailing</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Preferred Date *</label>
-                            <input type="date" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Vehicle Make/Model</label>
-                            <input type="text" placeholder="e.g., Toyota Camry">
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">Book Appointment</button>
+            <div class="checklist-section">
+                <div class="checklist-title">Interior Checklist</div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="int1" data-task="Vacuum Seats & Carpets">
+                    <div class="task-name">Vacuum Seats & Carpets</div>
+                    <div class="employee-field">
+                        <label>Employee</label>
+                        <input type="text" class="employee" placeholder="Name">
                     </div>
-                </form>
+                    <div class="time-field">
+                        <label>Time</label>
+                        <input type="time" class="time">
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="int2" data-task="Clean Dashboard">
+                    <div class="task-name">Clean Dashboard</div>
+                    <div class="employee-field">
+                        <label>Employee</label>
+                        <input type="text" class="employee" placeholder="Name">
+                    </div>
+                    <div class="time-field">
+                        <label>Time</label>
+                        <input type="time" class="time">
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="int3" data-task="Wipe Windows">
+                    <div class="task-name">Wipe Windows</div>
+                    <div class="employee-field">
+                        <label>Employee</label>
+                        <input type="text" class="employee" placeholder="Name">
+                    </div>
+                    <div class="time-field">
+                        <label>Time</label>
+                        <input type="time" class="time">
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="int4" data-task="Air Freshener">
+                    <div class="task-name">Air Freshener</div>
+                    <div class="employee-field">
+                        <label>Employee</label>
+                        <input type="text" class="employee" placeholder="Name">
+                    </div>
+                    <div class="time-field">
+                        <label>Time</label>
+                        <input type="time" class="time">
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <p>&copy; 2024 CleanCar Professional Auto Detailing. All rights reserved.</p>
-            <p>📞 (555) 123-4567 | 📧 <a href="mailto:info@cleancar.com">info@cleancar.com</a></p>
+        <div class="actions">
+            <button class="btn-primary" onclick="clearForm()">Reset</button>
+            <button class="btn-secondary" onclick="saveLocal()">Save</button>
+            <button class="btn-download" onclick="downloadForSheets()">📥 Download for Google Sheets</button>
         </div>
-    </footer>
+
+        <div class="footer">
+            <p>All data is saved locally in your browser</p>
+        </div>
+    </div>
+
+    <script>
+        // Load saved data
+        function loadForm() {
+            const saved = localStorage.getItem('cleancarData');
+            if (saved) {
+                const data = JSON.parse(saved);
+                document.getElementById('vehicleMake').value = data.vehicleMake || '';
+                document.getElementById('vehicleModel').value = data.vehicleModel || '';
+                document.getElementById('serviceDate').value = data.serviceDate || '';
+                document.getElementById('approvedBy').value = data.approvedBy || '';
+                
+                data.tasks.forEach((task, index) => {
+                    const checkbox = document.querySelectorAll('input[type="checkbox"]')[index];
+                    const employees = document.querySelectorAll('.employee');
+                    const times = document.querySelectorAll('.time');
+                    if (checkbox) checkbox.checked = task.completed;
+                    if (employees[index]) employees[index].value = task.employee || '';
+                    if (times[index]) times[index].value = task.time || '';
+                });
+            }
+        }
+
+        // Save to localStorage
+        function saveLocal() {
+            const data = {
+                vehicleMake: document.getElementById('vehicleMake').value,
+                vehicleModel: document.getElementById('vehicleModel').value,
+                serviceDate: document.getElementById('serviceDate').value,
+                approvedBy: document.getElementById('approvedBy').value,
+                tasks: []
+            };
+
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const employees = document.querySelectorAll('.employee');
+            const times = document.querySelectorAll('.time');
+
+            checkboxes.forEach((cb, i) => {
+                data.tasks.push({
+                    completed: cb.checked,
+                    task: cb.dataset.task,
+                    employee: employees[i].value,
+                    time: times[i].value
+                });
+            });
+
+            localStorage.setItem('cleancarData', JSON.stringify(data));
+            alert('✓ Saved successfully');
+        }
+
+        // Download as CSV for Google Sheets
+        function downloadForSheets() {
+            const data = {
+                vehicleMake: document.getElementById('vehicleMake').value,
+                vehicleModel: document.getElementById('vehicleModel').value,
+                serviceDate: document.getElementById('serviceDate').value,
+                approvedBy: document.getElementById('approvedBy').value,
+                tasks: []
+            };
+
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const employees = document.querySelectorAll('.employee');
+            const times = document.querySelectorAll('.time');
+
+            checkboxes.forEach((cb, i) => {
+                data.tasks.push({
+                    task: cb.dataset.task,
+                    completed: cb.checked ? 'YES' : 'NO',
+                    employee: employees[i].value,
+                    time: times[i].value
+                });
+            });
+
+            // Create CSV
+            let csv = `Vehicle Make,Vehicle Model,Service Date,Approved By\n`;
+            csv += `${data.vehicleMake},${data.vehicleModel},${data.serviceDate},${data.approvedBy}\n\n`;
+            csv += `Task,Completed,Employee,Time\n`;
+            data.tasks.forEach(task => {
+                csv += `"${task.task}","${task.completed}","${task.employee}","${task.time}"\n`;
+            });
+
+            // Download
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `CleanCar-${data.serviceDate || 'Checklist'}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Reset form
+        function clearForm() {
+            document.getElementById('vehicleMake').value = '';
+            document.getElementById('vehicleModel').value = '';
+            document.getElementById('serviceDate').value = '';
+            document.getElementById('approvedBy').value = '';
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.querySelectorAll('.employee').forEach(e => e.value = '');
+            document.querySelectorAll('.time').forEach(t => t.value = '');
+        }
+
+        // Load on page start
+        loadForm();
+    </script>
 </body>
 </html>
