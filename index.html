@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CleanCar - Service Checklist</title>
+    <title>CleanCar - Employee Task Tracker</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -20,6 +20,7 @@
             --text-muted: #64748b;
             --success: #10b981;
             --accent: #3b82f6;
+            --warning: #f59e0b;
         }
 
         body {
@@ -30,7 +31,7 @@
         }
 
         .container {
-            max-width: 700px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -40,7 +41,7 @@
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
@@ -54,8 +55,8 @@
             letter-spacing: 0.5px;
         }
 
-        /* Cards */
-        .card {
+        /* Info Card */
+        .info-card {
             background: white;
             border-radius: 10px;
             padding: 1.5rem;
@@ -64,24 +65,19 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         }
 
-        .card-title {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            font-weight: 600;
-            margin-bottom: 0.75rem;
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
 
-        /* Form Fields */
         .form-group {
             display: flex;
             flex-direction: column;
-            margin-bottom: 1rem;
         }
 
         label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -108,39 +104,45 @@
             box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
         }
 
-        /* Checklist Section */
-        .checklist-section {
-            margin-top: 1.5rem;
+        /* Checklist Card */
+        .checklist-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         }
 
-        .checklist-title {
+        .checklist-header {
             font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 1rem;
             color: var(--primary);
+            margin-bottom: 1rem;
             padding-bottom: 0.75rem;
             border-bottom: 2px solid var(--border);
         }
 
         .checklist-item {
             display: grid;
-            grid-template-columns: 60px 1fr 150px 130px;
+            grid-template-columns: 40px 1fr 180px 150px 100px;
             gap: 1rem;
             align-items: center;
-            padding: 0.75rem;
+            padding: 0.9rem;
             margin-bottom: 0.75rem;
             background: var(--light);
             border-radius: 6px;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
 
         .checklist-item:hover {
             background: #f1f5f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .checklist-item input[type="checkbox"] {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             cursor: pointer;
             accent-color: var(--success);
         }
@@ -151,38 +153,60 @@
             font-size: 0.95rem;
         }
 
-        .employee-field,
-        .time-field {
+        .input-wrapper {
             display: flex;
             flex-direction: column;
             gap: 0.3rem;
         }
 
-        .employee-field label,
-        .time-field label {
-            font-size: 0.7rem;
+        .input-wrapper label {
+            font-size: 0.65rem;
             color: var(--text-muted);
-            font-weight: 600;
         }
 
-        .employee-field input,
-        .time-field input {
+        .input-wrapper input {
             padding: 0.5rem;
             font-size: 0.85rem;
             border: 1px solid var(--border);
             border-radius: 4px;
+            min-width: 0;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        }
+
+        .status-badge {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-complete {
+            background: #d1fae5;
+            color: #065f46;
         }
 
         /* Action Buttons */
         .actions {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 1rem;
             margin-top: 2rem;
         }
 
         button {
-            padding: 0.75rem;
+            padding: 0.85rem 1rem;
             border: none;
             border-radius: 6px;
             font-size: 0.9rem;
@@ -194,35 +218,41 @@
             letter-spacing: 0.3px;
         }
 
-        .btn-primary {
+        .btn-save {
             background: var(--primary);
             color: white;
         }
 
-        .btn-primary:hover {
+        .btn-save:hover {
             background: #0f172a;
             transform: translateY(-1px);
         }
 
-        .btn-secondary {
-            background: var(--accent);
+        .btn-reset {
+            background: var(--warning);
             color: white;
         }
 
-        .btn-secondary:hover {
-            background: #2563eb;
+        .btn-reset:hover {
+            background: #d97706;
             transform: translateY(-1px);
         }
 
-        .btn-download {
+        .btn-export {
             grid-column: 1 / -1;
             background: var(--success);
             color: white;
+            font-size: 0.95rem;
+            padding: 1rem;
         }
 
-        .btn-download:hover {
+        .btn-export:hover {
             background: #059669;
             transform: translateY(-1px);
+        }
+
+        .btn-export:active {
+            transform: translateY(0);
         }
 
         /* Footer */
@@ -233,29 +263,51 @@
             color: var(--text-muted);
         }
 
-        @media (max-width: 600px) {
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            border-radius: 10px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success);
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 1024px) {
             .checklist-item {
-                grid-template-columns: 50px 1fr;
+                grid-template-columns: 40px 1fr;
                 gap: 0.75rem;
             }
 
-            .employee-field,
-            .time-field {
+            .input-wrapper {
                 grid-column: 1 / -1;
-                order: 10;
             }
 
-            .checklist-title {
-                font-size: 0.95rem;
+            .status-badge {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-export {
+                grid-column: 1;
             }
 
             h1 {
                 font-size: 1.5rem;
             }
 
-            button {
-                font-size: 0.85rem;
-                padding: 0.65rem;
+            .info-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -263,160 +315,197 @@
 <body>
     <div class="container">
         <header>
-            <h1>CleanCar</h1>
-            <p class="subtitle">Service Completion Checklist</p>
+            <h1>CleanCar Task Tracker</h1>
+            <p class="subtitle">Employee Task Completion Log</p>
         </header>
 
-        <div class="card">
-            <div class="card-title">Vehicle Information</div>
-            
-            <div class="form-group">
-                <label>Vehicle Make</label>
-                <input type="text" id="vehicleMake" placeholder="e.g., Toyota">
-            </div>
-
-            <div class="form-group">
-                <label>Vehicle Model</label>
-                <input type="text" id="vehicleModel" placeholder="e.g., Camry">
-            </div>
-
-            <div class="form-group">
-                <label>Service Date</label>
-                <input type="date" id="serviceDate">
-            </div>
-
-            <div class="form-group">
-                <label>Approved By</label>
-                <input type="text" id="approvedBy" placeholder="Manager name">
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="checklist-section">
-                <div class="checklist-title">Exterior Checklist</div>
-
-                <div class="checklist-item">
-                    <input type="checkbox" id="ext1" data-task="Wash & Rinse">
-                    <div class="task-name">Wash & Rinse</div>
-                    <div class="employee-field">
-                        <label>Employee</label>
-                        <input type="text" class="employee" placeholder="Name">
-                    </div>
-                    <div class="time-field">
-                        <label>Time</label>
-                        <input type="time" class="time">
-                    </div>
+        <!-- Vehicle & Job Info -->
+        <div class="info-card">
+            <div class="info-grid">
+                <div class="form-group">
+                    <label>Vehicle Make</label>
+                    <input type="text" id="vehicleMake" placeholder="e.g., Toyota">
                 </div>
 
-                <div class="checklist-item">
-                    <input type="checkbox" id="ext2" data-task="Clay Bar Treatment">
-                    <div class="task-name">Clay Bar Treatment</div>
-                    <div class="employee-field">
-                        <label>Employee</label>
-                        <input type="text" class="employee" placeholder="Name">
-                    </div>
-                    <div class="time-field">
-                        <label>Time</label>
-                        <input type="time" class="time">
-                    </div>
+                <div class="form-group">
+                    <label>Vehicle Model</label>
+                    <input type="text" id="vehicleModel" placeholder="e.g., Camry">
                 </div>
 
-                <div class="checklist-item">
-                    <input type="checkbox" id="ext3" data-task="Wax & Polish">
-                    <div class="task-name">Wax & Polish</div>
-                    <div class="employee-field">
-                        <label>Employee</label>
-                        <input type="text" class="employee" placeholder="Name">
-                    </div>
-                    <div class="time-field">
-                        <label>Time</label>
-                        <input type="time" class="time">
-                    </div>
+                <div class="form-group">
+                    <label>Service Date</label>
+                    <input type="date" id="serviceDate">
                 </div>
 
-                <div class="checklist-item">
-                    <input type="checkbox" id="ext4" data-task="Tire Cleaning">
-                    <div class="task-name">Tire Cleaning</div>
-                    <div class="employee-field">
-                        <label>Employee</label>
-                        <input type="text" class="employee" placeholder="Name">
-                    </div>
-                    <div class="time-field">
-                        <label>Time</label>
-                        <input type="time" class="time">
-                    </div>
+                <div class="form-group">
+                    <label>Approved By</label>
+                    <input type="text" id="approvedBy" placeholder="Manager name">
                 </div>
             </div>
 
-            <div class="checklist-section">
-                <div class="checklist-title">Interior Checklist</div>
-
-                <div class="checklist-item">
-                    <input type="checkbox" id="int1" data-task="Vacuum Seats & Carpets">
-                    <div class="task-name">Vacuum Seats & Carpets</div>
-                    <div class="employee-field">
-                        <label>Employee</label>
-                        <input type="text" class="employee" placeholder="Name">
-                    </div>
-                    <div class="time-field">
-                        <label>Time</label>
-                        <input type="time" class="time">
-                    </div>
-                </div>
-
-                <div class="checklist-item">
-                    <input type="checkbox" id="int2" data-task="Clean Dashboard">
-                    <div class="task-name">Clean Dashboard</div>
-                    <div class="employee-field">
-                        <label>Employee</label>
-                        <input type="text" class="employee" placeholder="Name">
-                    </div>
-                    <div class="time-field">
-                        <label>Time</label>
-                        <input type="time" class="time">
-                    </div>
-                </div>
-
-                <div class="checklist-item">
-                    <input type="checkbox" id="int3" data-task="Wipe Windows">
-                    <div class="task-name">Wipe Windows</div>
-                    <div class="employee-field">
-                        <label>Employee</label>
-                        <input type="text" class="employee" placeholder="Name">
-                    </div>
-                    <div class="time-field">
-                        <label>Time</label>
-                        <input type="time" class="time">
-                    </div>
-                </div>
-
-                <div class="checklist-item">
-                    <input type="checkbox" id="int4" data-task="Air Freshener">
-                    <div class="task-name">Air Freshener</div>
-                    <div class="employee-field">
-                        <label>Employee</label>
-                        <input type="text" class="employee" placeholder="Name">
-                    </div>
-                    <div class="time-field">
-                        <label>Time</label>
-                        <input type="time" class="time">
-                    </div>
-                </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
         </div>
 
+        <!-- Exterior Tasks -->
+        <div class="checklist-card">
+            <div class="checklist-header">Exterior Tasks</div>
+
+            <div class="checklist-item">
+                <input type="checkbox" class="task-check" data-task="Wash & Rinse">
+                <div class="task-name">Wash & Rinse</div>
+                <div class="input-wrapper">
+                    <label>Employee</label>
+                    <input type="text" class="employee" placeholder="Name">
+                </div>
+                <div class="input-wrapper">
+                    <label>Time Completed</label>
+                    <input type="time" class="time">
+                </div>
+                <div class="status-badge status-pending" data-status="pending">Pending</div>
+            </div>
+
+            <div class="checklist-item">
+                <input type="checkbox" class="task-check" data-task="Clay Bar Treatment">
+                <div class="task-name">Clay Bar Treatment</div>
+                <div class="input-wrapper">
+                    <label>Employee</label>
+                    <input type="text" class="employee" placeholder="Name">
+                </div>
+                <div class="input-wrapper">
+                    <label>Time Completed</label>
+                    <input type="time" class="time">
+                </div>
+                <div class="status-badge status-pending" data-status="pending">Pending</div>
+            </div>
+
+            <div class="checklist-item">
+                <input type="checkbox" class="task-check" data-task="Wax & Polish">
+                <div class="task-name">Wax & Polish</div>
+                <div class="input-wrapper">
+                    <label>Employee</label>
+                    <input type="text" class="employee" placeholder="Name">
+                </div>
+                <div class="input-wrapper">
+                    <label>Time Completed</label>
+                    <input type="time" class="time">
+                </div>
+                <div class="status-badge status-pending" data-status="pending">Pending</div>
+            </div>
+
+            <div class="checklist-item">
+                <input type="checkbox" class="task-check" data-task="Tire Cleaning">
+                <div class="task-name">Tire Cleaning</div>
+                <div class="input-wrapper">
+                    <label>Employee</label>
+                    <input type="text" class="employee" placeholder="Name">
+                </div>
+                <div class="input-wrapper">
+                    <label>Time Completed</label>
+                    <input type="time" class="time">
+                </div>
+                <div class="status-badge status-pending" data-status="pending">Pending</div>
+            </div>
+        </div>
+
+        <!-- Interior Tasks -->
+        <div class="checklist-card">
+            <div class="checklist-header">Interior Tasks</div>
+
+            <div class="checklist-item">
+                <input type="checkbox" class="task-check" data-task="Vacuum Seats & Carpets">
+                <div class="task-name">Vacuum Seats & Carpets</div>
+                <div class="input-wrapper">
+                    <label>Employee</label>
+                    <input type="text" class="employee" placeholder="Name">
+                </div>
+                <div class="input-wrapper">
+                    <label>Time Completed</label>
+                    <input type="time" class="time">
+                </div>
+                <div class="status-badge status-pending" data-status="pending">Pending</div>
+            </div>
+
+            <div class="checklist-item">
+                <input type="checkbox" class="task-check" data-task="Clean Dashboard">
+                <div class="task-name">Clean Dashboard</div>
+                <div class="input-wrapper">
+                    <label>Employee</label>
+                    <input type="text" class="employee" placeholder="Name">
+                </div>
+                <div class="input-wrapper">
+                    <label>Time Completed</label>
+                    <input type="time" class="time">
+                </div>
+                <div class="status-badge status-pending" data-status="pending">Pending</div>
+            </div>
+
+            <div class="checklist-item">
+                <input type="checkbox" class="task-check" data-task="Wipe Windows">
+                <div class="task-name">Wipe Windows</div>
+                <div class="input-wrapper">
+                    <label>Employee</label>
+                    <input type="text" class="employee" placeholder="Name">
+                </div>
+                <div class="input-wrapper">
+                    <label>Time Completed</label>
+                    <input type="time" class="time">
+                </div>
+                <div class="status-badge status-pending" data-status="pending">Pending</div>
+            </div>
+
+            <div class="checklist-item">
+                <input type="checkbox" class="task-check" data-task="Air Freshener">
+                <div class="task-name">Air Freshener</div>
+                <div class="input-wrapper">
+                    <label>Employee</label>
+                    <input type="text" class="employee" placeholder="Name">
+                </div>
+                <div class="input-wrapper">
+                    <label>Time Completed</label>
+                    <input type="time" class="time">
+                </div>
+                <div class="status-badge status-pending" data-status="pending">Pending</div>
+            </div>
+        </div>
+
+        <!-- Actions -->
         <div class="actions">
-            <button class="btn-primary" onclick="clearForm()">Reset</button>
-            <button class="btn-secondary" onclick="saveLocal()">Save</button>
-            <button class="btn-download" onclick="downloadForSheets()">📥 Download for Google Sheets</button>
+            <button class="btn-save" onclick="saveLocal()">💾 Save</button>
+            <button class="btn-reset" onclick="clearForm()">🔄 Reset</button>
+            <button class="btn-export" onclick="downloadForSheets()">📊 Export to Google Sheets</button>
         </div>
 
         <div class="footer">
-            <p>All data is saved locally in your browser</p>
+            <p>Data is automatically saved to your browser. Export to transfer to Google Sheets.</p>
         </div>
     </div>
 
     <script>
+        // Update status badges and progress
+        function updateUI() {
+            const checkboxes = document.querySelectorAll('.task-check');
+            const badges = document.querySelectorAll('.status-badge');
+            let completed = 0;
+
+            checkboxes.forEach((cb, index) => {
+                const badge = badges[index];
+                if (cb.checked) {
+                    badge.textContent = 'Complete';
+                    badge.className = 'status-badge status-complete';
+                    completed++;
+                } else {
+                    badge.textContent = 'Pending';
+                    badge.className = 'status-badge status-pending';
+                }
+            });
+
+            // Update progress bar
+            const progress = (completed / checkboxes.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
         // Load saved data
         function loadForm() {
             const saved = localStorage.getItem('cleancarData');
@@ -427,14 +516,17 @@
                 document.getElementById('serviceDate').value = data.serviceDate || '';
                 document.getElementById('approvedBy').value = data.approvedBy || '';
                 
+                const checkboxes = document.querySelectorAll('.task-check');
+                const employees = document.querySelectorAll('.employee');
+                const times = document.querySelectorAll('.time');
+
                 data.tasks.forEach((task, index) => {
-                    const checkbox = document.querySelectorAll('input[type="checkbox"]')[index];
-                    const employees = document.querySelectorAll('.employee');
-                    const times = document.querySelectorAll('.time');
-                    if (checkbox) checkbox.checked = task.completed;
+                    if (checkboxes[index]) checkboxes[index].checked = task.completed;
                     if (employees[index]) employees[index].value = task.employee || '';
                     if (times[index]) times[index].value = task.time || '';
                 });
+
+                updateUI();
             }
         }
 
@@ -448,7 +540,7 @@
                 tasks: []
             };
 
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checkboxes = document.querySelectorAll('.task-check');
             const employees = document.querySelectorAll('.employee');
             const times = document.querySelectorAll('.time');
 
@@ -475,7 +567,7 @@
                 tasks: []
             };
 
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checkboxes = document.querySelectorAll('.task-check');
             const employees = document.querySelectorAll('.employee');
             const times = document.querySelectorAll('.time');
 
@@ -489,33 +581,45 @@
             });
 
             // Create CSV
-            let csv = `Vehicle Make,Vehicle Model,Service Date,Approved By\n`;
-            csv += `${data.vehicleMake},${data.vehicleModel},${data.serviceDate},${data.approvedBy}\n\n`;
-            csv += `Task,Completed,Employee,Time\n`;
+            let csv = `CLEANCAR TASK COMPLETION LOG\n`;
+            csv += `\nVehicle Make,Vehicle Model,Service Date,Approved By\n`;
+            csv += `"${data.vehicleMake}","${data.vehicleModel}","${data.serviceDate}","${data.approvedBy}"\n`;
+            csv += `\n\nTask,Status,Employee,Time Completed\n`;
+            
             data.tasks.forEach(task => {
                 csv += `"${task.task}","${task.completed}","${task.employee}","${task.time}"\n`;
             });
 
             // Download
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `CleanCar-${data.serviceDate || 'Checklist'}.csv`;
-            a.click();
-            window.URL.revokeObjectURL(url);
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `CleanCar-Checklist-${data.serviceDate || new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         // Reset form
         function clearForm() {
-            document.getElementById('vehicleMake').value = '';
-            document.getElementById('vehicleModel').value = '';
-            document.getElementById('serviceDate').value = '';
-            document.getElementById('approvedBy').value = '';
-            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-            document.querySelectorAll('.employee').forEach(e => e.value = '');
-            document.querySelectorAll('.time').forEach(t => t.value = '');
+            if (confirm('Clear all data?')) {
+                document.getElementById('vehicleMake').value = '';
+                document.getElementById('vehicleModel').value = '';
+                document.getElementById('serviceDate').value = '';
+                document.getElementById('approvedBy').value = '';
+                document.querySelectorAll('.task-check').forEach(cb => cb.checked = false);
+                document.querySelectorAll('.employee').forEach(e => e.value = '');
+                document.querySelectorAll('.time').forEach(t => t.value = '');
+                updateUI();
+            }
         }
+
+        // Event listeners
+        document.querySelectorAll('.task-check').forEach(cb => {
+            cb.addEventListener('change', updateUI);
+        });
 
         // Load on page start
         loadForm();
